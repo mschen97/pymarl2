@@ -88,7 +88,7 @@ class PPOLearner:
             # 0-out the targets that came from padded data
             td_error = th.max((values - targets.detach())** 2, (values_clipped - targets.detach())** 2)
             masked_td_error = td_error * mask_agent
-            critic_loss = 0.5 * masked_td_error.sum() / mask_agent.sum()
+            critic_loss = masked_td_error.sum() / mask_agent.sum()
 
             # Actor
             pi = []
